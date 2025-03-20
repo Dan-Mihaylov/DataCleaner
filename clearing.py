@@ -35,6 +35,10 @@ class DataCleaner:
             result = drop_na[['Email', 'First Name', 'Last Name']]
             result.loc[:, 'Email'] = result['Email'].astype(str)
 
+            # Capitalize First and Last name
+            result['First Name'] = result['First Name'].str.capitalize()
+            result['Last Name'] = result['Last Name'].str.capitalize()
+
             # Remove zonal support emails and tests
             result = result[(~result.Email.str.endswith(self.ignore_zonal) & ~result.Email.str.contains(self.ignore_test))]
 
